@@ -1,6 +1,8 @@
 <template>
   <div class="hello">
-    {{ post }}
+    <h1>Zufälliges Zitat {{ row }}</h1>
+    <h3>{{ sentence }}</h3>
+    <h2>{{ author }}</h2>
   </div>
 </template>
 
@@ -10,13 +12,21 @@ import axios from "axios";
 export default {
   data() {
     return {
-      post: null,
+      sentence: "",
+      author: "",
+      row : null,
     };
   },
   async mounted() {
-    this.post = await axios.get("http://localhost:5000/getListRandom").then((res) => {
-      console.log(res.data.msg)
-      return res.data.msg;}).catch((err) => console.log(err))
+    await axios
+      .get("http://localhost:5000/getRandom")
+      .then((res) => {
+        console.log(res.data.msg);
+        this.sentence = res.data.msg.Sentences;
+        this.author = res.data.msg.Author;
+        this.row = res.data.msg.row;
+      })
+      .catch((err) => console.log(err));
   },
   methods: {
     /**
@@ -28,16 +38,17 @@ export default {
           })
       console.log(this.post);
     }*/
-  }
-}
-;
-
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.hello {
+ justify-content: center;
+  align-content: center;
+  height: 100vh;
+  width: 100vw;
 }
 ul {
   list-style-type: none;
