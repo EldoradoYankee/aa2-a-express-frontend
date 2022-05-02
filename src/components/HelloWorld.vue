@@ -21,7 +21,8 @@ export default {
     await axios
       .get("https://unr8c7h3d5.execute-api.eu-central-1.amazonaws.com/staging/getRandom")
       .then((res) => {
-        console.log(res.data.msg);
+        console.log(res.data);
+        res = JSON.parse(res);
         this.sentence = res.data.Sentences;
         this.author = res.data.Author;
         this.row = res.data.row;
