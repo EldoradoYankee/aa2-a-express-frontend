@@ -19,7 +19,7 @@ export default {
   },
   async mounted() {
     await axios
-      .get("http://localhost:5000/getRandom")
+      .get("https://main.d3vqkx6t7t0d2v.amplifyapp.com/getRandom")
       .then((res) => {
         console.log(res.data.msg);
         this.sentence = res.data.msg.Sentences;
