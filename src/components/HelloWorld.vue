@@ -22,9 +22,9 @@ export default {
       .get("https://unr8c7h3d5.execute-api.eu-central-1.amazonaws.com/staging/getRandom")
       .then((res) => {
         console.log(res.data.msg);
-        this.sentence = res.data.msg.Sentences;
-        this.author = res.data.msg.Author;
-        this.row = res.data.msg.row;
+        this.sentence = res.data.Sentences;
+        this.author = res.data.Author;
+        this.row = res.data.row;
       })
       .catch((err) => console.log(err));
   },
